@@ -29,6 +29,38 @@ lint:
     - shfmt@3.6.0
     - trufflehog@3.88.8
     - clang-tidy@16.0.3
+    - Norminette
+    - c_formatter_42
+  definitions:
+    - name: Norminette
+      files:
+        - c
+        - c-header
+      prepare_command: [pip, install, norminette, --user]
+      commands:
+        - name: Run
+          run: python3 -m norminette ${target}
+          output: pass_fail
+          success_codes:
+            - 0
+            - 1
+      runtime: python
+      batch: true
+    - name: c_formatter_42
+      files:
+        - c
+        - c-header
+      prepare_command: [python3, -m, pip, install, --upgrade, c_formatter_42]
+      commands:
+        - name: Run
+          run: python3 -m c_formatter_42 ${target}
+          output: pass_fail
+          success_codes:
+            - 0
+            - 1
+      runtime: python
+      batch: false
+      formatter: true
 actions:
   # Enable format pre-commit checks to enforce consistent style.
   disabled:
