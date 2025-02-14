@@ -11,7 +11,7 @@ VERSION = 0.1.0
 
 # Added -MMD -MP to generate dependency files.
 CCFLAGS = -Wall -Wextra -Werror -Wpedantic -g -O3 -MMD -MP -I$(INC_DIR) -I$(LFT_DIR) -I$(MLX_DIR) \
-  -Wno-strict-prototypes -fPIC
+	-Wno-strict-prototypes -fPIC
 LDFLAGS = -L$(LFT_DIR) -L$(MLX_DIR) -lft -lmlx -lXext -lX11 -lm -fPIC -Wl,-rpath,$(LFT_DIR) -Wl,-rpath,$(MLX_DIR) -Wl,-rpath,$(BUILD_DIR)
 
 LFT = $(LFT_DIR)/libft.a
@@ -122,4 +122,24 @@ test: all
 		LFT_DIR=$(abspath $(LFT_DIR)) MLX_DIR=$(abspath $(MLX_DIR)) BUILD_DIR=$(abspath $(BUILD_DIR)) \
 		INC_DIR=$(abspath $(INC_DIR)) -j$(nproc)
 
-.PHONY: all static shared clean nclean fclean re qre tools incl
+compile_commands:
+	@echo "[" > compile_commands.json
+	@first=1; \
+	for src in $(SRC); do \
+		obj=$(OBJ_DIR)/crust/$$(echo $$src | sed 's/\.c$$/.o/'); \
+		if [ $$first -eq 1 ]; then \
+			first=0; \
+		else \
+			echo "  ," >> compile_commands.json; \
+		fi; \
+		echo "  {" >> compile_commands.json; \
+		echo "    \"directory\": \"$(CURDIR)\"," >> compile_commands.json; \
+		echo "    \"command\": \"$(CC) $(CCFLAGS) -c $$src -o $$obj\"," >> compile_commands.json; \
+		echo "    \"file\": \"$$src\"" >> compile_commands.json; \
+		echo "  }" >> compile_commands.json; \
+	done; \
+	echo "]" >> compile_commands.json
+# Format the JSON file.
+	@clang-format -i compile_commands.json
+
+.PHONY: all static shared clean nclean fclean re qre tools incl compile_commands
