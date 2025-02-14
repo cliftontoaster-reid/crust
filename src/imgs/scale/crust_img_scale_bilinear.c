@@ -6,85 +6,84 @@
 /*   By: lfiorell <lfiorell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 11:23:45 by lfiorell          #+#    #+#             */
-/*   Updated: 2025/02/13 23:03:48 by lfiorell         ###   ########.fr       */
+/*   Updated: 2025/02/14 14:28:47 by lfiorell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "img/img.h"
+#include "img/scale.h"
 #include <math.h>
 #include <stdlib.h>
 
-static t_rgba	bilinear_interpolate(t_img *img, double gx, double gy)
+static void	getpxls(t_bilinear_context *b, t_img *img)
 {
-	int		x0;
-	int		y0;
-	int		x1;
-	int		y1;
-	double	dy;
-	double	w1;
-	double	w2;
-	double	w3;
-	double	w4;
-	t_rgba	c00;
-	t_rgba	c10;
-	t_rgba	c01;
-	t_rgba	c11;
-
-	x0 = (int)gx;
-	y0 = (int)gy;
-	x1 = x0 + (x0 < img->width - 1);
-	y1 = y0 + (y0 < img->height - 1);
-	double dx = fmax(0.0, fmin(1.0, gx - x0)); // Clamp dx/dy
-	dy = fmax(0.0, fmin(1.0, gy - y0));
-	w1 = (1 - dx) * (1 - dy);
-	w2 = dx * (1 - dy);
-	w3 = (1 - dx) * dy;
-	w4 = dx * dy;
-	c00 = crust_img_get_pixel(img, (t_2d){x0, y0});
-	c10 = crust_img_get_pixel(img, (t_2d){x1, y0});
-	c01 = crust_img_get_pixel(img, (t_2d){x0, y1});
-	c11 = crust_img_get_pixel(img, (t_2d){x1, y1});
-	return ((t_rgba){.r = (uint8_t)(c00.r * w1 + c10.r * w2 + c01.r * w3 + c11.r
-			* w4 + 0.5f), .g = (uint8_t)(c00.g * w1 + c10.g * w2 + c01.g * w3
-			+ c11.g * w4 + 0.5f), .b = (uint8_t)(c00.b * w1 + c10.b * w2 + c01.b
-			* w3 + c11.b * w4 + 0.5f), .a = (uint8_t)(c00.a * w1 + c10.a * w2
-			+ c01.a * w3 + c11.a * w4 + 0.5f)});
+	b->c00 = crust_img_get_pixel(img, (t_2d){b->x0, b->y0});
+	b->c10 = crust_img_get_pixel(img, (t_2d){b->x1, b->y0});
+	b->c01 = crust_img_get_pixel(img, (t_2d){b->x0, b->y1});
+	b->c11 = crust_img_get_pixel(img, (t_2d){b->x1, b->y1});
 }
 
-__attribute__((visibility("hidden"))) t_img *crust_img_scale_bilinear(t_img *img,
-	t_2d new_size)
+static t_rgba	bilinear_interpolate(t_img *img, double gx, double gy)
 {
-	t_img	*new_img;
-	double	scale_x;
-	double	scale_y;
-	int		x;
-	int		y;
-	double	gy;
-	double	gx;
+	t_bilinear_context	b;
+	t_rgba				result;
+
+	b.x0 = (int)gx;
+	b.y0 = (int)gy;
+	b.x1 = b.x0 + (b.x0 < img->width - 1);
+	b.y1 = b.y0 + (b.y0 < img->height - 1);
+	b.dx = fmax(0.0, fmin(1.0, gx - b.x0));
+	b.dy = fmax(0.0, fmin(1.0, gy - b.y0));
+	b.w1 = (1 - b.dx) * (1 - b.dy);
+	b.w2 = b.dx * (1 - b.dy);
+	b.w3 = (1 - b.dx) * b.dy;
+	b.w4 = b.dx * b.dy;
+	getpxls(&b, img);
+	result.r = b.c00.r * b.w1 + b.c10.r * b.w2 + b.c01.r * b.w3 + b.c11.r
+		* b.w4;
+	result.g = b.c00.g * b.w1 + b.c10.g * b.w2 + b.c01.g * b.w3 + b.c11.g
+		* b.w4;
+	result.b = b.c00.b * b.w1 + b.c10.b * b.w2 + b.c01.b * b.w3 + b.c11.b
+		* b.w4;
+	result.a = b.c00.a * b.w1 + b.c10.a * b.w2 + b.c01.a * b.w3 + b.c11.a
+		* b.w4;
+	return (result);
+}
+
+static void	in_loop(t_bilinear_context *b, t_img *img)
+{
+	b->gy = b->y * b->scale_y;
+	b->x = 0;
+	while (b->x < b->new_img->width)
+	{
+		b->gx = b->x * b->scale_x;
+		crust_img_put_pixel(b->new_img, (t_2d){b->x, b->y},
+			bilinear_interpolate(img, b->gx, b->gy));
+		b->x++;
+	}
+}
+
+t_img	*crust_img_scale_bilinear(t_img *img, t_2d new_size)
+{
+	t_bilinear_context	b;
 
 	if (!img || new_size.x <= 0 || new_size.y <= 0)
 		return (NULL);
-	new_img = crust_img_new(img->mlx_ptr, new_size.x, new_size.y);
-	if (!new_img)
+	b.new_img = crust_img_new(img->mlx_ptr, new_size.x, new_size.y);
+	if (!b.new_img)
 		return (NULL);
-	scale_x = (new_img->width > 1) ? ((img->width - 1.0) / (new_img->width
-				- 1.0)) : 0;
-	scale_y = (new_img->height > 1) ? ((img->height - 1.0) / (new_img->height
-				- 1.0)) : 0;
-	y = 0;
-	while (y < new_img->height)
+	if (b.new_img->height > 1)
+		b.scale_x = (img->width - 1.0) / (b.new_img->width - 1.0);
+	else
+		b.scale_x = 0;
+	if (b.new_img->height > 1)
+		b.scale_y = (img->height - 1.0) / (b.new_img->height - 1.0);
+	else
+		b.scale_y = 0;
+	b.y = 0;
+	while (b.y < b.new_img->height)
 	{
-		gy = y * scale_y;
-		x = 0;
-		while (x < new_img->width)
-		{
-			gx = x * scale_x;
-			// Direct calculation avoids error accumulation
-			crust_img_put_pixel(new_img, (t_2d){x, y}, bilinear_interpolate(img,
-					gx, gy));
-			x++;
-		}
-		y++;
+		in_loop(&b, img);
+		b.y++;
 	}
-	return (new_img);
+	return (b.new_img);
 }

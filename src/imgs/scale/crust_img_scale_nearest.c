@@ -6,14 +6,13 @@
 /*   By: lfiorell <lfiorell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 10:59:59 by lfiorell          #+#    #+#             */
-/*   Updated: 2025/02/13 12:46:50 by lfiorell         ###   ########.fr       */
+/*   Updated: 2025/02/14 14:18:59 by lfiorell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "img/scale.h"
 
-__attribute__((visibility("hidden"))) t_img *crust_img_scale_nearest(t_img *img,
-	t_2d new_size)
+t_img	*crust_img_scale_nearest(t_img *img, t_2d new_size)
 {
 	t_img	*new_img;
 	t_2d	pos;
