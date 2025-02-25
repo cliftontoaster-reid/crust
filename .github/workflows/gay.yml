@@ -65,10 +65,10 @@ jobs:
           esac
 
       - name: Build project
-        run: make CC=${{ matrix.compiler }} -j$(nproc)
+        run: make CC=${{ matrix.compiler }}
 
       - name: Run core tests
-        run: make test -j$(nproc)
+        run: make test
 
       - name: Get 42 checker
         run: |
