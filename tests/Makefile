@@ -37,7 +37,8 @@ SRC = \
 	$(SRC_DIR)/test_main.cpp \
 	$(SRC_DIR)/imgs/img.cpp \
 	$(SRC_DIR)/imgs/scale.cpp \
-	$(SRC_DIR)/imgs/set.cpp
+	$(SRC_DIR)/imgs/set.cpp \
+	$(SRC_DIR)/map/camera.cpp
 
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))
 

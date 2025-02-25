@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_main.cpp                                      :+:      :+:    :+:   */
+/*   camera.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfiorell <lfiorell@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/13 13:46:24 by lfiorell          #+#    #+#             */
-/*   Updated: 2025/02/25 17:07:18 by lfiorell         ###   ########.fr       */
+/*   Created: 2025/02/25 13:22:39 by lfiorell          #+#    #+#             */
+/*   Updated: 2025/02/25 16:52:58 by lfiorell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "CUnit/Basic.h"
-#include "../tests.hpp"
+#ifndef CAMERA_H
+# define CAMERA_H
 
-int main(void)
+# include "img/img.h"
+
+typedef struct s_camera
 {
-  if (CUE_SUCCESS != CU_initialize_registry())
-  {
-    return CU_get_error();
-  }
-  CU_basic_set_mode(CU_BRM_NORMAL);
+	t_2d	pos;
+	t_2d	size;
+}			t_camera;
 
-  run_img_tests();
-  run_set_tests();
-  run_scale_tests();
-  run_camera_tests();
+t_camera	*camera_init(t_2d pos, t_2d size);
+void		camera_free(t_camera *camera);
 
-  CU_basic_run_tests();
-  CU_cleanup_registry();
+t_img		*camera_render(t_camera *camera, t_img *img, void *mlx);
+void		camera_move(t_camera *camera, t_2d dest);
+void		camera_resize(t_camera *camera, t_2d size);
 
-  return 0;
-}
+#endif

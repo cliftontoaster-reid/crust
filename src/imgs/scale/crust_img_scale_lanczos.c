@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   crust_img_scale_lanczos.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfiorell <lfiorell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lfiorell <lfiorell@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 11:26:31 by lfiorell          #+#    #+#             */
-/*   Updated: 2025/02/13 23:35:24 by lfiorell         ###   ########.fr       */
+/*   Updated: 2025/02/25 16:54:42 by lfiorell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ static double	lanczos(double x, int a)
 	return (sinc(x) * sinc(x / (double)a));
 }
 
-__attribute__((visibility("hidden"))) t_img *crust_img_scale_lanczos(t_img *img,
-	t_2d new_size)
+t_img	*crust_img_scale_lanczos(t_img *img, t_2d new_size)
 {
 	t_img	*new_img;
 	double	orig_x;

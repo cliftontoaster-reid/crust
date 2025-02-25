@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_main.cpp                                      :+:      :+:    :+:   */
+/*   camera_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfiorell <lfiorell@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/13 13:46:24 by lfiorell          #+#    #+#             */
-/*   Updated: 2025/02/25 17:07:18 by lfiorell         ###   ########.fr       */
+/*   Created: 2025/02/25 13:25:53 by lfiorell          #+#    #+#             */
+/*   Updated: 2025/02/25 16:51:36 by lfiorell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "CUnit/Basic.h"
-#include "../tests.hpp"
+#include "map/camera.h"
 
-int main(void)
+t_camera	*camera_init(t_2d pos, t_2d size)
 {
-  if (CUE_SUCCESS != CU_initialize_registry())
-  {
-    return CU_get_error();
-  }
-  CU_basic_set_mode(CU_BRM_NORMAL);
+	t_camera	*camera;
 
-  run_img_tests();
-  run_set_tests();
-  run_scale_tests();
-  run_camera_tests();
-
-  CU_basic_run_tests();
-  CU_cleanup_registry();
-
-  return 0;
+	camera = malloc(sizeof(t_camera));
+	if (!camera)
+		return (NULL);
+	ft_bzero(camera, sizeof(t_camera));
+	camera->pos.x = pos.x;
+	camera->pos.y = pos.y;
+	(void)0;
+	camera->size.x = size.x;
+	camera->size.y = size.y;
+	return (camera);
 }

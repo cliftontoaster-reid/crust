@@ -1,33 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_main.cpp                                      :+:      :+:    :+:   */
+/*   camera_free.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfiorell <lfiorell@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/13 13:46:24 by lfiorell          #+#    #+#             */
-/*   Updated: 2025/02/25 17:07:18 by lfiorell         ###   ########.fr       */
+/*   Created: 2025/02/25 13:28:52 by lfiorell          #+#    #+#             */
+/*   Updated: 2025/02/25 16:53:46 by lfiorell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "CUnit/Basic.h"
-#include "../tests.hpp"
+#include "map/camera.h"
 
-int main(void)
+void	camera_free(t_camera *camera)
 {
-  if (CUE_SUCCESS != CU_initialize_registry())
-  {
-    return CU_get_error();
-  }
-  CU_basic_set_mode(CU_BRM_NORMAL);
-
-  run_img_tests();
-  run_set_tests();
-  run_scale_tests();
-  run_camera_tests();
-
-  CU_basic_run_tests();
-  CU_cleanup_registry();
-
-  return 0;
+	if (camera == NULL)
+		return ;
+	ft_bzero(camera, sizeof(t_camera));
+	free(camera);
 }

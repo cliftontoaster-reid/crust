@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   crust_img_scale_bilinear.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfiorell <lfiorell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lfiorell <lfiorell@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 11:23:45 by lfiorell          #+#    #+#             */
-/*   Updated: 2025/02/13 23:03:48 by lfiorell         ###   ########.fr       */
+/*   Updated: 2025/02/25 16:54:42 by lfiorell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,7 @@ static t_rgba	bilinear_interpolate(t_img *img, double gx, double gy)
 			+ c01.a * w3 + c11.a * w4 + 0.5f)});
 }
 
-__attribute__((visibility("hidden"))) t_img *crust_img_scale_bilinear(t_img *img,
-	t_2d new_size)
+t_img	*crust_img_scale_bilinear(t_img *img, t_2d new_size)
 {
 	t_img	*new_img;
 	double	scale_x;
