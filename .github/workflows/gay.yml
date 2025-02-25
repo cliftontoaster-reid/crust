@@ -57,7 +57,8 @@ jobs:
         run: |
           sudo ln -sf /bin/true /usr/bin/mandb
           sudo apt-get update -qq
-          sudo apt-get install -yq --no-install-recommends ${{ matrix.cc_package }} libbsd-dev
+          sudo apt-get install -yq --no-install-recommends ${{ matrix.cc_package }}
+          sudo apt-get install -yq --no-install-recommends xorg libxext-dev zlib1g-dev libbsd-dev
           case "${{ matrix.linker }}" in
             "mold") sudo apt-get install -yq mold ;;
             "lld") sudo apt-get install -yq lld ;;
