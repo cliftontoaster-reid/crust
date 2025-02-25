@@ -1,0 +1,87 @@
+[
+  {
+    "directory": "/home/cliftontr/Documents/42/_Games/crust",
+    "command": "clang -Wall -Wextra -Werror -Wpedantic -g -O3 -MMD -MP -Iinclude/ -Ilibft -I.cache/minilibx -Wno-strict-prototypes -fPIC -c src/imgs/img/crust_img_from_xpm.c -o .cache/obj/crust/src/imgs/img/crust_img_from_xpm.o",
+    "file": "src/imgs/img/crust_img_from_xpm.c"
+  },
+  {
+    "directory": "/home/cliftontr/Documents/42/_Games/crust",
+    "command": "clang -Wall -Wextra -Werror -Wpedantic -g -O3 -MMD -MP -Iinclude/ -Ilibft -I.cache/minilibx -Wno-strict-prototypes -fPIC -c src/imgs/img/crust_img_put_pixel.c -o .cache/obj/crust/src/imgs/img/crust_img_put_pixel.o",
+    "file": "src/imgs/img/crust_img_put_pixel.c"
+  },
+  {
+    "directory": "/home/cliftontr/Documents/42/_Games/crust",
+    "command": "clang -Wall -Wextra -Werror -Wpedantic -g -O3 -MMD -MP -Iinclude/ -Ilibft -I.cache/minilibx -Wno-strict-prototypes -fPIC -c src/imgs/img/crust_img_get_pixel.c -o .cache/obj/crust/src/imgs/img/crust_img_get_pixel.o",
+    "file": "src/imgs/img/crust_img_get_pixel.c"
+  },
+  {
+    "directory": "/home/cliftontr/Documents/42/_Games/crust",
+    "command": "clang -Wall -Wextra -Werror -Wpedantic -g -O3 -MMD -MP -Iinclude/ -Ilibft -I.cache/minilibx -Wno-strict-prototypes -fPIC -c src/imgs/img/crust_img_drop.c -o .cache/obj/crust/src/imgs/img/crust_img_drop.o",
+    "file": "src/imgs/img/crust_img_drop.c"
+  },
+  {
+    "directory": "/home/cliftontr/Documents/42/_Games/crust",
+    "command": "clang -Wall -Wextra -Werror -Wpedantic -g -O3 -MMD -MP -Iinclude/ -Ilibft -I.cache/minilibx -Wno-strict-prototypes -fPIC -c src/imgs/img/crust_img_crop.c -o .cache/obj/crust/src/imgs/img/crust_img_crop.o",
+    "file": "src/imgs/img/crust_img_crop.c"
+  },
+  {
+    "directory": "/home/cliftontr/Documents/42/_Games/crust",
+    "command": "clang -Wall -Wextra -Werror -Wpedantic -g -O3 -MMD -MP -Iinclude/ -Ilibft -I.cache/minilibx -Wno-strict-prototypes -fPIC -c src/imgs/img/crust_img_cpy.c -o .cache/obj/crust/src/imgs/img/crust_img_cpy.o",
+    "file": "src/imgs/img/crust_img_cpy.c"
+  },
+  {
+    "directory": "/home/cliftontr/Documents/42/_Games/crust",
+    "command": "clang -Wall -Wextra -Werror -Wpedantic -g -O3 -MMD -MP -Iinclude/ -Ilibft -I.cache/minilibx -Wno-strict-prototypes -fPIC -c src/imgs/img/crust_img_new.c -o .cache/obj/crust/src/imgs/img/crust_img_new.o",
+    "file": "src/imgs/img/crust_img_new.c"
+  },
+  {
+    "directory": "/home/cliftontr/Documents/42/_Games/crust",
+    "command": "clang -Wall -Wextra -Werror -Wpedantic -g -O3 -MMD -MP -Iinclude/ -Ilibft -I.cache/minilibx -Wno-strict-prototypes -fPIC -c src/imgs/scale/crust_img_scale.c -o .cache/obj/crust/src/imgs/scale/crust_img_scale.o",
+    "file": "src/imgs/scale/crust_img_scale.c"
+  },
+  {
+    "directory": "/home/cliftontr/Documents/42/_Games/crust",
+    "command": "clang -Wall -Wextra -Werror -Wpedantic -g -O3 -MMD -MP -Iinclude/ -Ilibft -I.cache/minilibx -Wno-strict-prototypes -fPIC -c src/imgs/scale/crust_img_scale_nearest.c -o .cache/obj/crust/src/imgs/scale/crust_img_scale_nearest.o",
+    "file": "src/imgs/scale/crust_img_scale_nearest.c"
+  },
+  {
+    "directory": "/home/cliftontr/Documents/42/_Games/crust",
+    "command": "clang -Wall -Wextra -Werror -Wpedantic -g -O3 -MMD -MP -Iinclude/ -Ilibft -I.cache/minilibx -Wno-strict-prototypes -fPIC -c src/imgs/scale/crust_img_scale_bilinear.c -o .cache/obj/crust/src/imgs/scale/crust_img_scale_bilinear.o",
+    "file": "src/imgs/scale/crust_img_scale_bilinear.c"
+  },
+  {
+    "directory": "/home/cliftontr/Documents/42/_Games/crust",
+    "command": "clang -Wall -Wextra -Werror -Wpedantic -g -O3 -MMD -MP -Iinclude/ -Ilibft -I.cache/minilibx -Wno-strict-prototypes -fPIC -c src/imgs/scale/crust_img_scale_lanczos.c -o .cache/obj/crust/src/imgs/scale/crust_img_scale_lanczos.o",
+    "file": "src/imgs/scale/crust_img_scale_lanczos.c"
+  },
+  {
+    "directory": "/home/cliftontr/Documents/42/_Games/crust",
+    "command": "clang -Wall -Wextra -Werror -Wpedantic -g -O3 -MMD -MP -Iinclude/ -Ilibft -I.cache/minilibx -Wno-strict-prototypes -fPIC -c src/imgs/set/crust_set_from_xpm.c -o .cache/obj/crust/src/imgs/set/crust_set_from_xpm.o",
+    "file": "src/imgs/set/crust_set_from_xpm.c"
+  },
+  {
+    "directory": "/home/cliftontr/Documents/42/_Games/crust",
+    "command": "clang -Wall -Wextra -Werror -Wpedantic -g -O3 -MMD -MP -Iinclude/ -Ilibft -I.cache/minilibx -Wno-strict-prototypes -fPIC -c src/imgs/set/crust_set_drop.c -o .cache/obj/crust/src/imgs/set/crust_set_drop.o",
+    "file": "src/imgs/set/crust_set_drop.c"
+  },
+  {
+    "directory": "/home/cliftontr/Documents/42/_Games/crust",
+    "command": "clang -Wall -Wextra -Werror -Wpedantic -g -O3 -MMD -MP -Iinclude/ -Ilibft -I.cache/minilibx -Wno-strict-prototypes -fPIC -c src/imgs/set/crust_set_get_img.c -o .cache/obj/crust/src/imgs/set/crust_set_get_img.o",
+    "file": "src/imgs/set/crust_set_get_img.c"
+  },
+  {
+    "directory": "/home/cliftontr/Documents/42/_Games/crust",
+    "command": "clang -Wall -Wextra -Werror -Wpedantic -g -O3 -MMD -MP -Iinclude/ -Ilibft -I.cache/minilibx -Wno-strict-prototypes -fPIC -c src/imgs/set/crust_set_get_img_by_pos.c -o .cache/obj/crust/src/imgs/set/crust_set_get_img_by_pos.o",
+    "file": "src/imgs/set/crust_set_get_img_by_pos.c"
+  },
+  {
+    "directory": "/home/cliftontr/Documents/42/_Games/crust",
+    "command": "clang -Wall -Wextra -Werror -Wpedantic -g -O3 -MMD -MP -Iinclude/ -Ilibft -I.cache/minilibx -Wno-strict-prototypes -fPIC -c src/imgs/set/crust_set_get_imgs.c -o .cache/obj/crust/src/imgs/set/crust_set_get_imgs.o",
+    "file": "src/imgs/set/crust_set_get_imgs.c"
+  },
+  {
+    "directory": "/home/cliftontr/Documents/42/_Games/crust",
+    "command": "clang -Wall -Wextra -Werror -Wpedantic -g -O3 -MMD -MP -Iinclude/ -Ilibft -I.cache/minilibx -Wno-strict-prototypes -fPIC -c src/imgs/set/crust_set_get_imgs_by_pos.c -o .cache/obj/crust/src/imgs/set/crust_set_get_imgs_by_pos.o",
+    "file": "src/imgs/set/crust_set_get_imgs_by_pos.c"
+  }
+]

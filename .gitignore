@@ -3,3 +3,4 @@ build/
 crust.a
 crust.so
 vgcore.*
+/libft
