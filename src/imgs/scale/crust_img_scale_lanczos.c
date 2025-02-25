@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   crust_img_scale_lanczos.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfiorell <lfiorell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lfiorell <lfiorell@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 11:26:31 by lfiorell          #+#    #+#             */
 /*   Updated: 2025/02/14 14:49:29 by lfiorell         ###   ########.fr       */

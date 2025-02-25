@@ -39,6 +39,13 @@ SRC = \
 	$(SRC_DIR)imgs/set/crust_set_get_img_by_pos.c \
 	$(SRC_DIR)imgs/set/crust_set_get_imgs.c \
 	$(SRC_DIR)imgs/set/crust_set_get_imgs_by_pos.c \
+	\
+	$(SRC_DIR)map/camera/camera_free.c \
+	$(SRC_DIR)map/camera/camera_init.c \
+	$(SRC_DIR)map/camera/camera_move.c \
+	$(SRC_DIR)map/camera/camera_render.c \
+	$(SRC_DIR)map/camera/camera_resize.c \
+
 
 OBJ = $(addprefix $(OBJ_DIR)/crust/, $(SRC:.c=.o))
 
