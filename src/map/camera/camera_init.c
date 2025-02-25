@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tests.hpp                                          :+:      :+:    :+:   */
+/*   camera_init.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lfiorell <lfiorell@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/13 15:36:23 by lfiorell          #+#    #+#             */
-/*   Updated: 2025/02/25 16:58:35 by lfiorell         ###   ########.fr       */
+/*   Created: 2025/02/25 13:25:53 by lfiorell          #+#    #+#             */
+/*   Updated: 2025/02/25 16:51:36 by lfiorell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TESTS_HPP
-#define TESTS_HPP
+#include "map/camera.h"
 
-void run_img_tests(void);
-void run_scale_tests(void);
-void run_set_tests(void);
-void run_camera_tests(void);
+t_camera	*camera_init(t_2d pos, t_2d size)
+{
+	t_camera	*camera;
 
-#endif
+	camera = malloc(sizeof(t_camera));
+	if (!camera)
+		return (NULL);
+	ft_bzero(camera, sizeof(t_camera));
+	camera->pos.x = pos.x;
+	camera->pos.y = pos.y;
+	(void)0;
+	camera->size.x = size.x;
+	camera->size.y = size.y;
+	return (camera);
+}

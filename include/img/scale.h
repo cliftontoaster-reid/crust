@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   scale.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfiorell <lfiorell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lfiorell <lfiorell@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 10:54:19 by lfiorell          #+#    #+#             */
 /*   Updated: 2025/02/14 14:49:40 by lfiorell         ###   ########.fr       */
@@ -14,7 +14,6 @@
 # define SCALE_H
 
 # include "img.h"
-
 # define LANCZOS_A 3
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
