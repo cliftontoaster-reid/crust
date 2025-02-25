@@ -6,13 +6,17 @@
 /*   By: lfiorell <lfiorell@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 13:46:24 by lfiorell          #+#    #+#             */
-/*   Updated: 2025/02/25 17:25:33 by lfiorell         ###   ########.fr       */
+/*   Updated: 2025/02/25 17:27:15 by lfiorell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "CUnit/Basic.h"
 #include "../tests.hpp"
+
+extern "C"
+{
 #include <mlx.h>
+}
 
 int main(void)
 {
