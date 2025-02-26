@@ -53,10 +53,10 @@ SRC = \
 
 OBJ = $(addprefix $(OBJ_DIR)/crust/, $(SRC:.c=.o))
 
-all: static shared incl
+all: static shared
 
-static: $(BUILD_DIR)/$(NAME)-$(VERSION).a
-shared: $(BUILD_DIR)/$(NAME)-$(VERSION).so
+static: $(BUILD_DIR)/$(NAME)-$(VERSION).a incl
+shared: $(BUILD_DIR)/$(NAME)-$(VERSION).so incl
 incl: $(BUILD_DIR)/include
 
 $(BUILD_DIR)/include: $(shell find $(INC_DIR) -type f)
@@ -133,4 +133,15 @@ test: all
 		LFT_DIR=$(abspath $(LFT_DIR)) MLX_DIR=$(abspath $(MLX_DIR)) BUILD_DIR=$(abspath $(BUILD_DIR)) \
 		INC_DIR=$(abspath $(INC_DIR)) -j$(nproc)
 
-.PHONY: all static shared clean nclean fclean re qre tools incl
+help:
+	@echo "Usage: make [all|static|shared|clean|nclean|fclean|re|qre|tools|incl]"
+	@echo "all: Build static and shared libraries."
+	@echo "static: Build static library."
+	@echo "shared: Build shared library."
+	@echo "clean: Remove object files."
+	@echo "nclean: Remove object files and build directory."
+	@echo "fclean: Remove object files, build directory, and dependencies."
+	@echo "re: Remove object files, build directory, and dependencies, then build static and shared libraries."
+	@echo "qre: Remove object files and build directory, then build static and shared libraries."
+
+.PHONY: all static shared clean nclean fclean re qre
