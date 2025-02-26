@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   img.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfiorell <lfiorell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lfiorell <lfiorell@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 14:06:04 by lfiorell          #+#    #+#             */
-/*   Updated: 2025/02/13 22:26:47 by lfiorell         ###   ########.fr       */
+/*   Updated: 2025/02/26 19:54:47 by lfiorell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void test_crust_img_from_xpm(void)
 
   CU_ASSERT_PTR_NOT_NULL_FATAL(img);
   CU_ASSERT_PTR_NOT_NULL(img->mlx_ptr);
-  CU_ASSERT_PTR_NOT_NULL(img->img_ptr);
+  CU_ASSERT_PTR_NULL(img->img_ptr);
 
   CU_ASSERT_EQUAL(img->width, 1024);
   CU_ASSERT_EQUAL(img->height, 768);

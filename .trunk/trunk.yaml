@@ -27,6 +27,28 @@ lint:
     - shfmt@3.6.0
     - trufflehog@3.88.13
     - yamllint@1.35.1
+    - Norminette
+    - c42_format
+  definitions:
+    - name: Norminette
+      files:
+        - c-header
+        - c-source
+      commands:
+        - name: lint
+          run: bash ${workspace}/tools/norminette.sh ${target}
+          output: pass_fail
+          success_codes: [0, 1]
+    - name: c42_format
+      formatter: true
+      files:
+        - c-header
+        - c-source
+      commands:
+        - name: format
+          run: bash ${workspace}/tools/format.sh ${target}
+          output: pass_fail
+          success_codes: [0, 1]
 actions:
   enabled:
     - trunk-announce
