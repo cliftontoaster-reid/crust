@@ -45,6 +45,10 @@ SRC = \
 	$(SRC_DIR)map/camera/camera_move.c \
 	$(SRC_DIR)map/camera/camera_render.c \
 	$(SRC_DIR)map/camera/camera_resize.c \
+	\
+	$(SRC_DIR)utils/math/clamp.c \
+	$(SRC_DIR)utils/math/lanczos.c \
+	$(SRC_DIR)utils/math/sinc.c \
 
 
 OBJ = $(addprefix $(OBJ_DIR)/crust/, $(SRC:.c=.o))
