@@ -1,17 +1,17 @@
 # Crust Game Engine
 
-Crust is a list of tools for assisting in the development of games using the MLX library for Linux.
+Crust is a collection of tools designed to assist in the development of games using the MLX library on Linux.
 
 ## Installation
 
-To install the Crust Game Engine, you must have the necessary dependencies installed on your system, being:
+Before installing the Crust Game Engine, you need to have the following dependencies installed on your system:
 
-- clang (or any other C compiler adding the proper CC argument to the make command)
-- make
-- git (or rad)
-- libbsd
+- **clang** (or any compatible C compiler; you can override with the proper `CC` argument)
+- **make**
+- **git** (or your preferred version control system)
+- **libbsd** (BSD library headers)
 
-To install the dependencies, you can use the following commands based on your distribution:
+Below are commands to install these dependencies on several unconventional or lesser‐known Linux distributions:
 
 ### Debian/Ubuntu
 
@@ -31,37 +31,19 @@ sudo dnf install clang make git libbsd-devel
 sudo pacman -S clang make git libbsd
 ```
 
-### Void Linux
+### YiffOS
 
 ```bash
-sudo xbps-install clang make git libbsd-devel
+sudo bulge i llvm make git libbsd
 ```
 
-### OpenSUSE
+### Chimera Linux
 
 ```bash
-sudo zypper install clang make git libbsd0
+sudo apk add clang gmake git libbsd
 ```
 
-### Solus
-
-```bash
-sudo eopkg install clang make git libbsd
-```
-
-### Gentoo
-
-```bash
-sudo emerge -av dev-lang/clang sys-devel/make dev-vcs/git dev-libs/libbsd
-```
-
-### Alpine Linux
-
-```bash
-sudo apk add clang make git libbsd-dev
-```
-
-After installing the dependencies, you can clone the repository and install the Crust Game Engine using the following commands:
+After installing the dependencies, clone the repository and build the Crust Game Engine with these commands:
 
 ```bash
 git clone https://github.com/cliftontoaster-reid/crust
@@ -69,7 +51,7 @@ cd crust
 make
 ```
 
-As well the script is able to install the engine in your system, to do so, you can use the following command:
+To install the engine system-wide, run:
 
 ```bash
 sudo make install
