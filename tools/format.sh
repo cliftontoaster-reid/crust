@@ -21,8 +21,12 @@ for file in "$@"; do
 	tmpfile=$(mktemp /tmp/format.XXXXXX)
 	cp "${file}" "${tmpfile}"
 
-	# Format the temporary file
-	python3 -m c_formatter_42 "${tmpfile}"
+	# Format the temporary file and check for errors
+	if ! python3 -m c_formatter_42 "${tmpfile}"; then
+		echo "Formatting error for: ${file}. Skipping file."
+		rm "${tmpfile}"
+		continue
+	fi
 
 	# Compare with the original; replace if they differ.
 	if ! diff -q "${file}" "${tmpfile}" >/dev/null 2>&1; then
