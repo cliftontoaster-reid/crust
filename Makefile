@@ -19,6 +19,9 @@ MLX = $(MLX_DIR)/libmlx.a
 
 NAME = libcrust
 
+# Allow user to override number of parallel jobs, default to number of cores.
+NPROC ?= $(shell nproc)
+
 SRC = \
 	$(SRC_DIR)imgs/img/crust_img_from_xpm.c \
 	$(SRC_DIR)imgs/img/crust_img_put_pixel.c \
@@ -60,6 +63,7 @@ shared: $(BUILD_DIR)/$(NAME)-$(VERSION).so incl
 incl: $(BUILD_DIR)/include
 
 $(BUILD_DIR)/include: $(shell find $(INC_DIR) -type f)
+	@mkdir -p $(BUILD_DIR)
 	cp -r $(INC_DIR) $(BUILD_DIR)/include
 
 $(BUILD_DIR)/$(NAME)-$(VERSION).a: $(OBJ)
@@ -86,14 +90,14 @@ $(LFT):
 		if [ "$$current_commit" != "$(LFT_VER)" ]; then \
 			git fetch origin && git checkout $(LFT_VER); \
 		fi
-	$(MAKE) -C $(LFT_DIR) OBJ_DIR=$(abspath $(OBJ_DIR))/libft CFLAGS+=" -fPIC" -j$(nproc)
+	$(MAKE) -C $(LFT_DIR) OBJ_DIR=$(abspath $(OBJ_DIR))/libft CFLAGS+=" -fPIC" -j$(NPROC)
 
 $(MLX):
 	@mkdir -p $(CAC_DIR)
 	@if [ ! -d "$(MLX_DIR)" ]; then \
 		git clone https://github.com/42Paris/minilibx-linux $(MLX_DIR); \
 	fi
-	$(MAKE) -C $(MLX_DIR) CFLAGS+=" -fPIC -I$(abspath $(MLX_DIR))" -j$(nproc)
+	$(MAKE) -C $(MLX_DIR) CFLAGS+=" -fPIC -I$(abspath $(MLX_DIR))" -j$(NPROC)
 
 clean:
 	rm -rf $(OBJ_DIR)
@@ -104,9 +108,13 @@ nclean: clean
 fclean: nclean
 	rm -rf $(LFT_DIR) $(CAC_DIR)
 
-re: fclean all
+re:
+	$(MAKE) fclean
+	$(MAKE) all -j$(NPROC)
 
-qre: nclean all
+qre:
+	$(MAKE) nclean
+	$(MAKE) all -j$(NPROC)
 
 install: all
 	@echo "Installing $(NAME)..."
@@ -131,7 +139,7 @@ uninstall:
 test: all
 	$(MAKE) -C tests OBJ_DIR=$(abspath $(OBJ_DIR))/tests CAC_DIR=$(abspath $(CAC_DIR)) \
 		LFT_DIR=$(abspath $(LFT_DIR)) MLX_DIR=$(abspath $(MLX_DIR)) BUILD_DIR=$(abspath $(BUILD_DIR)) \
-		INC_DIR=$(abspath $(INC_DIR)) -j$(nproc)
+		INC_DIR=$(abspath $(INC_DIR)) -j$(NPROC)
 
 help:
 	@echo "Usage: make [all|static|shared|clean|nclean|fclean|re|qre|tools|incl]"
