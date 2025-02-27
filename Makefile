@@ -142,14 +142,14 @@ test: all
 		INC_DIR=$(abspath $(INC_DIR)) -j$(NPROC)
 
 help:
-	@echo "Usage: make [all|static|shared|clean|nclean|fclean|re|qre|tools|incl]"
-	@echo "all: Build static and shared libraries."
-	@echo "static: Build static library."
-	@echo "shared: Build shared library."
-	@echo "clean: Remove object files."
-	@echo "nclean: Remove object files and build directory."
-	@echo "fclean: Remove object files, build directory, and dependencies."
-	@echo "re: Remove object files, build directory, and dependencies, then build static and shared libraries."
-	@echo "qre: Remove object files and build directory, then build static and shared libraries."
+	@echo -e "\033[1;34mUsage:\033[0m make [all|static|shared|clean|nclean|fclean|re|qre|tools|incl]"
+	@echo -e "\033[1;32mall:\033[0m Build both static and shared libraries."
+	@echo -e "\033[1;32mstatic:\033[0m Build the static library."
+	@echo -e "\033[1;32mshared:\033[0m Build the shared library."
+	@echo -e "\033[1;33mclean:\033[0m Remove object files only."
+	@echo -e "\033[1;33mnclean:\033[0m Remove object files and the build directory."
+	@echo -e "\033[1;31mfclean:\033[0m Remove object files, build directory, and dependencies."
+	@echo -e "\033[1;35mre:\033[0m Run fclean then build static and shared libraries."
+	@echo -e "\033[1;35mqre:\033[0m Remove object files and build directory, then rebuild."
 
 .PHONY: all static shared clean nclean fclean re qre
