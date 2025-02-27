@@ -8,6 +8,7 @@ INC_DIR = include/
 SRC_DIR = src/
 BUILD_DIR = build
 VERSION = 0.1.0
+LFT_VER = ef18a848e7ff89229ed47ebb177cbaee5b91e0be
 
 # Added -MMD -MP to generate dependency files.
 CCFLAGS = -Wall -Wextra -Werror -Wpedantic -g -O3 -MMD -MP -I$(INC_DIR) -I$(LFT_DIR) -I$(MLX_DIR) \
@@ -88,8 +89,9 @@ $(LFT):
 	@cd $(LFT_DIR) && \
 		current_commit=$$(git rev-parse HEAD); \
 		if [ "$$current_commit" != "$(LFT_VER)" ]; then \
-			git fetch origin && git checkout $(LFT_VER); \
+			git fetch origin; \
 		fi
+	@cd $(LFT_DIR) && git checkout $(LFT_VER)
 	$(MAKE) -C $(LFT_DIR) OBJ_DIR=$(abspath $(OBJ_DIR))/libft CFLAGS+=" -fPIC" -j$(NPROC)
 
 $(MLX):
