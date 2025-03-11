@@ -43,6 +43,7 @@ SRC = \
 	$(SRC_DIR)imgs/img/crust_img_crop.c \
 	$(SRC_DIR)imgs/img/crust_img_cpy.c \
 	$(SRC_DIR)imgs/img/crust_img_new.c \
+	$(SRC_DIR)imgs/img/crust_img_draw.c \
 	\
 	$(SRC_DIR)imgs/scale/crust_img_scale.c \
 	$(SRC_DIR)imgs/scale/crust_img_scale_nearest.c \

@@ -6,7 +6,7 @@
 /*   By: lfiorell <lfiorell@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 15:02:09 by lfiorell          #+#    #+#             */
-/*   Updated: 2025/03/11 15:06:22 by lfiorell         ###   ########.fr       */
+/*   Updated: 2025/03/11 15:11:52 by lfiorell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,10 +150,12 @@ void		crust_img_cpy(t_img *dst, t_img *src, t_2d pos, t_2d size);
 /// @param img The image to free.
 void		crust_img_drop(t_img *img);
 
-/// @brief Draws a source image onto a destination image at the specified position.
+/// @brief Draws a source image onto a destination image
+///			at the specified position.
 /// @param dst The destination image to draw onto.
 /// @param src The source image to draw.
-/// @param dst_pos The position on the destination image where the source image will be drawn.
+/// @param dst_pos The position on the destination image where the
+///						source image will be drawn.
 void		crust_img_draw(t_img *dst, t_img *src, t_2d dst_pos);
 
 #endif

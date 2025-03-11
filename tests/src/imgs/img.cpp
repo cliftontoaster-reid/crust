@@ -6,7 +6,7 @@
 /*   By: lfiorell <lfiorell@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/13 14:06:04 by lfiorell          #+#    #+#             */
-/*   Updated: 2025/02/27 09:39:43 by lfiorell         ###   ########.fr       */
+/*   Updated: 2025/03/11 15:12:16 by lfiorell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,6 +235,38 @@ void test_img_crop_off(void)
   crust_img_drop(dst);
 }
 
+void test_img_draw(void)
+{
+  char *path = (char *)"data/image.xpm";
+  void *owo = mlx_init();
+
+  t_img *img = crust_img_from_xpm(owo, path);
+  CU_ASSERT_PTR_NOT_NULL_FATAL(img);
+
+  t_img *dst = crust_img_new(owo, img->width, img->height);
+  CU_ASSERT_PTR_NOT_NULL_FATAL(dst);
+
+  t_2d pos = {0, 0};
+  crust_img_draw(dst, img, pos);
+
+  for (int y = 0; y < img->height; ++y)
+  {
+    for (int x = 0; x < img->width; ++x)
+    {
+      t_2d pos = {x, y};
+      t_rgba src_pixel = crust_img_get_pixel(img, pos);
+      t_rgba dst_pixel = crust_img_get_pixel(dst, pos);
+
+      CU_ASSERT_EQUAL(src_pixel.r, dst_pixel.r);
+      CU_ASSERT_EQUAL(src_pixel.g, dst_pixel.g);
+      CU_ASSERT_EQUAL(src_pixel.b, dst_pixel.b);
+    }
+  }
+
+  crust_img_drop(img);
+  crust_img_drop(dst);
+}
+
 void run_img_tests(void)
 {
   CU_pSuite pSuite = CU_add_suite("Imgs", NULL, NULL);
@@ -247,4 +279,5 @@ void run_img_tests(void)
   CU_add_test(pSuite, "crust_img_cpy_partial", test_img_cpy_partial);
   CU_add_test(pSuite, "crust_img_crop", test_img_crop);
   CU_add_test(pSuite, "crust_img_crop_off", test_img_crop_off);
+  CU_add_test(pSuite, "crust_img_draw", test_img_draw);
 }
