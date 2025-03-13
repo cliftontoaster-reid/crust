@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfiorell <lfiorell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lfiorell <lfiorell@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 15:00:06 by lfiorell          #+#    #+#             */
-/*   Updated: 2025/02/13 12:41:44 by lfiorell         ###   ########.fr       */
+/*   Updated: 2025/03/13 15:19:19 by lfiorell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,13 @@ t_img		*crust_set_get_imgs(t_set *set, long start, long end);
 /// @param end The end position.
 /// @return A pointer to the image, or NULL if an error occurred.
 t_img		*crust_set_get_imgs_by_pos(t_set *set, t_2d start, t_2d end);
+
+/// @brief Gets a set/tile of a set that does not follow the grid.
+/// @param set The set to get the image from.
+/// @param pos The position of the image to get.
+/// @param size The size of the image to get.
+/// @return A pointer to the image, or NULL if an error occurred.
+t_img		*crust_set_get_img_offgrid(t_set *set, t_2d pos, t_2d size);
 
 /// @brief Drops a set of images.
 /// @param set The set to drop.

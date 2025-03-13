@@ -8,7 +8,7 @@ MLX_DIR    = $(CAC_DIR)/minilibx
 INC_DIR    = include/
 SRC_DIR    = src/
 BUILD_DIR  = build
-VERSION    = 0.1.0
+VERSION    = 0.2.1
 LFT_VER    = ef18a848e7ff89229ed47ebb177cbaee5b91e0be
 
 # ANSI Color Variables
@@ -56,6 +56,7 @@ SRC = \
 	$(SRC_DIR)imgs/set/crust_set_get_img_by_pos.c \
 	$(SRC_DIR)imgs/set/crust_set_get_imgs.c \
 	$(SRC_DIR)imgs/set/crust_set_get_imgs_by_pos.c \
+	$(SRC_DIR)imgs/set/crust_set_get_img_offgrid.c \
 	\
 	$(SRC_DIR)map/camera/camera_free.c \
 	$(SRC_DIR)map/camera/camera_init.c \
@@ -82,8 +83,8 @@ shared: $(BUILD_DIR)/$(NAME)-$(VERSION).so incl
 incl: $(BUILD_DIR)/include
 
 $(BUILD_DIR)/include: $(shell find $(INC_DIR) -type f)
-	@mkdir -p $(BUILD_DIR)/include
-	@cp -a $(INC_DIR)/. $(BUILD_DIR)/include/
+	@mkdir -p $(BUILD_DIR)/include/Crust
+	@cp -a $(INC_DIR)/. $(BUILD_DIR)/include/Crust/
 	@echo -e "$(BLUE)====================================\n  Include files copied to $(BUILD_DIR)/include\n====================================$(RESET)"
 
 $(BUILD_DIR)/$(NAME)-$(VERSION).a: $(OBJ)

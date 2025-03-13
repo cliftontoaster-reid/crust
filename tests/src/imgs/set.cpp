@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   set.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfiorell <lfiorell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lfiorell <lfiorell@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 10:56:33 by lfiorell          #+#    #+#             */
-/*   Updated: 2025/02/14 12:21:46 by lfiorell         ###   ########.fr       */
+/*   Updated: 2025/03/13 15:35:09 by lfiorell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -266,6 +266,42 @@ void test_get_imgs_by_pos_off(void)
   crust_img_drop(img);
 }
 
+void test_set_get_img_offgrid(void)
+{
+  t_set *set = crust_set_from_xpm(mlx, path, tile_size);
+  t_2d offgrid_pos1 = {-1, -1};
+  t_img *img = crust_set_get_img_offgrid(set, offgrid_pos1, tile_size);
+
+  CU_ASSERT_PTR_NULL(img);
+
+  t_2d offgrid_pos2 = {0, 0};
+  t_2d img_size = {24, 24};
+  img = crust_set_get_img_offgrid(set, offgrid_pos2, img_size);
+
+  CU_ASSERT_PTR_NOT_NULL(img);
+  CU_ASSERT_PTR_NOT_NULL(img->mlx_ptr);
+  CU_ASSERT_PTR_NOT_NULL(img->img_ptr);
+  CU_ASSERT_EQUAL(img->width, 24);
+  CU_ASSERT_EQUAL(img->height, 24);
+
+  for (int y = 0; y < img->height; ++y)
+  {
+    for (int x = 0; x < img->width; ++x)
+    {
+      t_2d pos = {x, y};
+      t_rgba pixel = crust_img_get_pixel(img, pos);
+      t_rgba expected = crust_img_get_pixel(set->img, pos);
+
+      CU_ASSERT_EQUAL(pixel.r, expected.r);
+      CU_ASSERT_EQUAL(pixel.g, expected.g);
+      CU_ASSERT_EQUAL(pixel.b, expected.b);
+    }
+  }
+
+  crust_set_drop(set);
+  crust_img_drop(img);
+}
+
 void run_set_tests(void)
 {
   CU_pSuite suite = CU_add_suite("Set", NULL, NULL);
@@ -278,4 +314,5 @@ void run_set_tests(void)
   CU_add_test(suite, "crust_set_get_imgs_offy", test_set_get_imgs_offy);
   CU_add_test(suite, "crust_set_get_imgs_by_pos", test_get_imgs_by_pos);
   CU_add_test(suite, "crust_set_get_imgs_by_pos_off", test_get_imgs_by_pos_off);
+  CU_add_test(suite, "crust_set_get_img_offgrid", test_set_get_img_offgrid);
 }

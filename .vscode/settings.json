@@ -3,10 +3,6 @@
     "Makefile": "makefile",
     "LICENCE": "plaintext",
     "*.h": "c",
-    "array": "c",
-    "string": "c",
-    "string_view": "c",
-    "span": "c",
-    "random": "c"
+    "*.c": "c"
   }
 }
