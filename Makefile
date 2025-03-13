@@ -8,7 +8,7 @@ MLX_DIR    = $(CAC_DIR)/minilibx
 INC_DIR    = include/
 SRC_DIR    = src/
 BUILD_DIR  = build
-VERSION    = 0.2.1
+VERSION    = 1.0.1
 LFT_VER    = ef18a848e7ff89229ed47ebb177cbaee5b91e0be
 
 # ANSI Color Variables
