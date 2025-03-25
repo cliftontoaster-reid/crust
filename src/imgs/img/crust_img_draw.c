@@ -6,7 +6,7 @@
 /*   By: lfiorell <lfiorell@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 15:05:04 by lfiorell          #+#    #+#             */
-/*   Updated: 2025/03/25 15:39:11 by lfiorell         ###   ########.fr       */
+/*   Updated: 2025/03/25 15:39:32 by lfiorell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ static void	process_pixel(t_img *dst, t_img *src, t_2d src_pos, t_2d dst_pos)
 	t_rgba	src_pixel;
 
 	src_pixel = crust_img_get_pixel(src, src_pos);
-	// Skip pitch black pixels
 	if (!is_pitch_black(src_pixel))
 	{
 		crust_img_put_pixel(dst, dst_pos, src_pixel);
